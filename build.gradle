@@ -1,0 +1,60 @@
+apply plugin: 'java'
+sourceCompatibility = 1.8
+
+allprojects {
+    apply plugin: 'java'
+    group = 'de.texxxxas'
+    version = texxxxasVersion
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.11'
+    }
+}
+
+project(':main') {
+    dependencies {
+        compile project(':ui')
+        compile project(':generator')
+    }
+}
+
+project(':ui') {
+    dependencies {
+        compile project(':generator')
+    }
+}
+
+project(':generator') {
+    dependencies {
+
+    }
+}
+
+sourceSets {
+    ui { }
+    generator { }
+    main {
+        java {
+            compileClasspath += ui.output
+            compileClasspath += generator.output
+            runtimeClasspath += ui.output
+            runtimeClasspath += generator.output
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    compile project(':generator')
+    compile project(':ui')
+}

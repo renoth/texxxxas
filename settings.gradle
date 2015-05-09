@@ -1,0 +1,10 @@
+// properties
+
+rootProject.name = 'texxxxas'
+
+// submodules
+
+include 'generator'
+include 'ui'
+include 'main'
+

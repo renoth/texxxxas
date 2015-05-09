@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'de.texxxxas.main.TexxxxasApplication'
+
+jar {
+    baseName = 'texxxxas-main'
+
+    def manifestClasspath = configurations.compile.collect{ 'lib/' + it.getName() }.join(' ')
+
+    manifest {
+        attributes 'Main-Class': 'de.texxxxas.main.TexxxxasApplication'
+        attributes 'Class-Path': manifestClasspath
+    }
+
+    from (configurations.compile.resolve().collect { it.isDirectory() ? it : fileTree(it) }) {
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/*.SF'
+        exclude 'META-INF/*.DSA'
+        exclude 'META-INF/*.RSA'
+    }
+    destinationDir = file("build/dist")
+}
+
+task dist << {
+    project.copy {
+        from configurations.compile
+        into file('build/dist/lib')
+    }
+}
+
+jar.finalizedBy(dist)
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
