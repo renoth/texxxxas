@@ -7,4 +7,5 @@ rootProject.name = 'texxxxas'
 include 'generator'
 include 'ui'
 include 'main'
+include 'common'
 

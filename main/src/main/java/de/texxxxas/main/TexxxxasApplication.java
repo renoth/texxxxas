@@ -5,7 +5,7 @@ import de.texxxxas.ui.TexxxxasUi;
 
 public class TexxxxasApplication {
     public static void main(String[] args) {
-        System.out.println("Starting Application ... ");
+        System.out.println("\nStarting Application: \n");
 
         TexxxxasGenerator generator = new TexxxxasGenerator();
         generator.start();

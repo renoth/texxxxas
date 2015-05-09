@@ -16,22 +16,30 @@ subprojects {
     }
 }
 
+project(':common') {
+    dependencies {
+
+    }
+}
+
 project(':main') {
     dependencies {
         compile project(':ui')
         compile project(':generator')
+        compile project(':common')
     }
 }
 
 project(':ui') {
     dependencies {
         compile project(':generator')
+        compile project(':common')
     }
 }
 
 project(':generator') {
     dependencies {
-
+        compile project(':common')
     }
 }
 
