@@ -27,6 +27,13 @@ task dist << {
         from configurations.compile
         into file('build/dist/lib')
     }
+
+    project.copy {
+        from file('options.json')
+        into file('build/dist/')
+    }
+
+
 }
 
 jar.finalizedBy(dist)

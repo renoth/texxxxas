@@ -17,6 +17,8 @@ public class TexxxxasApplication {
     static Logger log = LoggerFactory.getLogger(TexxxxasApplication.class);
 
     public static void main(String[] args) {
+        ObjectMapper mapper = new ObjectMapper();
+
         System.out.println("\nStarting Application: \n");
 
         TexxxxasGenerator generator = new TexxxxasGenerator();
@@ -26,6 +28,11 @@ public class TexxxxasApplication {
         ui.start();
 
         GameParameters parameters = new GameParameters();
+        try {
+            parameters = mapper.readValue(new File(System.getProperty("user.dir") + "\\options.json"), GameParameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         //TODO set parameters
 
@@ -33,12 +40,14 @@ public class TexxxxasApplication {
 
         //save game
 
-        ObjectMapper mapper = new ObjectMapper();
+
         mapper.configure(SerializationFeature.INDENT_OUTPUT, true); //pretty output
         try {
             mapper.writeValue(new File(System.getProperty("user.dir") + "\\game.json"), game);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 }
