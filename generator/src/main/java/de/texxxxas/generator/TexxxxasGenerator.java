@@ -1,5 +1,6 @@
 package de.texxxxas.generator;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.texxxxas.common.TexxxxasGame;
 import de.texxxxas.common.game.GameParameters;
 import de.texxxxas.common.math.Coordinates;
@@ -8,16 +9,14 @@ import de.texxxxas.common.universe.Universe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class TexxxxasGenerator {
-    Logger log = LoggerFactory.getLogger(getClass());
-
-    public void start() {
-        System.out.println("Starting Generator ...");
-    }
+    static Logger log = LoggerFactory.getLogger(TexxxxasGenerator.class);
 
     public TexxxxasGame generateGame(GameParameters parameters) {
         log.info("Generating new game with parameters: " + parameters.toString());
@@ -57,5 +56,18 @@ public class TexxxxasGenerator {
         for (Star s : stars) {
             universe.getStars().put(s.getIdentifier(), s);
         }
+    }
+
+    public TexxxxasGame generateGame() {
+        ObjectMapper mapper = new ObjectMapper();
+
+        GameParameters parameters = new GameParameters();
+        try {
+            parameters = mapper.readValue(new File(System.getProperty("user.dir") + "\\options.json"), GameParameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return generateGame(parameters);
     }
 }
