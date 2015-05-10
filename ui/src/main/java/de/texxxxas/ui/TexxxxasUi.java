@@ -4,6 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import de.texxxxas.common.TexxxxasGame;
 import de.texxxxas.generator.TexxxxasGenerator;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -35,6 +42,42 @@ public class TexxxxasUi {
         mainFrame.setVisible(true);
 
         //build map window
+        
+        //add javaFX pane
+
+        final JFXPanel fxPanel = new JFXPanel();
+        mainFrame.add(fxPanel);
+        mainFrame.setSize(300, 200);
+        mainFrame.setVisible(true);
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                initFX(fxPanel);
+            }
+        });
+    }
+
+    private static void initFX(JFXPanel fxPanel) {
+        // This method is invoked on the JavaFX thread
+        Scene scene = createScene();
+        fxPanel.setScene(scene);
+    }
+
+    private static Scene createScene() {
+        Group root  =  new  Group();
+        Scene  scene  =  new  Scene(root, Color.ALICEBLUE);
+        Text text  =  new  Text();
+
+        text.setX(40);
+        text.setY(100);
+        text.setFont(new Font(25));
+        text.setText("Welcome JavaFX!");
+
+        root.getChildren().add(text);
+
+        return (scene);
     }
 
     private void buildMainMenu(final JMenuBar mainMenu) {
@@ -68,8 +111,6 @@ public class TexxxxasUi {
                 mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
             }
         });
-
-
     }
 
     private void buildViewMenu(final JMenuBar mainMenu) {
