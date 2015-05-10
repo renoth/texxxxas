@@ -1,0 +1,1 @@
+start cmd /k java -jar build\dist\texxxxas-main-0.0.1.jar
