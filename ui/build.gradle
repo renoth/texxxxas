@@ -2,10 +2,5 @@ apply plugin: 'java'
 
 jar {
     baseName = 'texxxxas-ui'
-
-}
-
-repositories {
-    mavenCentral()
 }
 

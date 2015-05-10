@@ -1,5 +1,4 @@
 apply plugin: 'java'
-sourceCompatibility = 1.8
 
 allprojects {
     apply plugin: 'java'
@@ -7,13 +6,21 @@ allprojects {
     version = texxxxasVersion
 }
 
+// Subproject configuration
+
 subprojects {
     repositories {
         mavenCentral()
     }
+
     dependencies {
+        compile 'org.slf4j:slf4j-api:1.7.12'
+
+        runtime 'org.slf4j:slf4j-jdk14:1.7.12'
+
         testCompile group: 'junit', name: 'junit', version: '4.11'
     }
+
 }
 
 project(':common') {
@@ -24,6 +31,8 @@ project(':common') {
 
 project(':main') {
     dependencies {
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.5.3'
+
         compile project(':ui')
         compile project(':generator')
         compile project(':common')
@@ -62,7 +71,11 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'org.openjdk.jmh:jmh-core:0.8'
+    testCompile 'org.openjdk.jmh:jmh-generator-annprocess:1.9.1'
+}
 
-    compile project(':generator')
-    compile project(':ui')
+task bench(type: JavaExec, dependsOn: [classes, testClasses]) {
+    classpath = sourceSets.test.runtimeClasspath
+    main = "de.texxxxas.Benchmark";
 }
