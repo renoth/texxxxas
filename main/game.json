@@ -2,7 +2,328 @@
   "factions" : null,
   "universe" : {
     "size" : 100,
-    "stars" : { }
+    "stars" : {
+      "S36" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 371860109504353856,
+          "y" : 895139631421412608
+        },
+        "identifier" : "S36"
+      },
+      "S10" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 674757997332096128,
+          "y" : 845569334157410688
+        },
+        "identifier" : "S10"
+      },
+      "S40" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 625804206680866432,
+          "y" : 767158666379559424
+        },
+        "identifier" : "S40"
+      },
+      "S37" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 866472646335955072,
+          "y" : 708349267474701056
+        },
+        "identifier" : "S37"
+      },
+      "S11" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 946000085455470464,
+          "y" : 557423068435517248
+        },
+        "identifier" : "S11"
+      },
+      "S34" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 93389820209416896,
+          "y" : 543085198119651456
+        },
+        "identifier" : "S34"
+      },
+      "S35" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 67263447715726864,
+          "y" : 715105006193079936
+        },
+        "identifier" : "S35"
+      },
+      "S32" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 230525444598130976,
+          "y" : 502222851866012800
+        },
+        "identifier" : "S32"
+      },
+      "S14" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 372571184902415488,
+          "y" : 225466403968745088
+        },
+        "identifier" : "S14"
+      },
+      "S33" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 122946618890833632,
+          "y" : 385871577646360256
+        },
+        "identifier" : "S33"
+      },
+      "S15" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 872674985085132544,
+          "y" : 658168865627866880
+        },
+        "identifier" : "S15"
+      },
+      "S30" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 366191310687274048,
+          "y" : 882129968593401472
+        },
+        "identifier" : "S30"
+      },
+      "S12" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 861207088207550720,
+          "y" : 24771125494820940
+        },
+        "identifier" : "S12"
+      },
+      "S31" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 607829432455058432,
+          "y" : 924523321897198208
+        },
+        "identifier" : "S31"
+      },
+      "S13" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 254075746149013088,
+          "y" : 204195754355450656
+        },
+        "identifier" : "S13"
+      },
+      "S2" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 928431087032974080,
+          "y" : 770179482415490048
+        },
+        "identifier" : "S2"
+      },
+      "S18" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 211422659025705408,
+          "y" : 383312743715910976
+        },
+        "identifier" : "S18"
+      },
+      "S1" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 178898074441747040,
+          "y" : 851905379113726080
+        },
+        "identifier" : "S1"
+      },
+      "S19" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 628888180904332160,
+          "y" : 615726142572424704
+        },
+        "identifier" : "S19"
+      },
+      "S16" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 293033863900816256,
+          "y" : 678853431007538176
+        },
+        "identifier" : "S16"
+      },
+      "S17" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 10604186511701128,
+          "y" : 271376324898669408
+        },
+        "identifier" : "S17"
+      },
+      "S38" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 244268161973411744,
+          "y" : 499915330870292544
+        },
+        "identifier" : "S38"
+      },
+      "S39" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 385478782333582720,
+          "y" : 401120395841473280
+        },
+        "identifier" : "S39"
+      },
+      "S23" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 342325746973906560,
+          "y" : 514637468574835456
+        },
+        "identifier" : "S23"
+      },
+      "S24" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 413313855587544640,
+          "y" : 207079803718265856
+        },
+        "identifier" : "S24"
+      },
+      "S25" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 438852549587627712,
+          "y" : 858745835664758272
+        },
+        "identifier" : "S25"
+      },
+      "S26" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 55613162783543664,
+          "y" : 144394779777255552
+        },
+        "identifier" : "S26"
+      },
+      "S20" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 112737754780575824,
+          "y" : 764656406670688896
+        },
+        "identifier" : "S20"
+      },
+      "S21" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 818952841295572480,
+          "y" : 924417633777824000
+        },
+        "identifier" : "S21"
+      },
+      "S22" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 937594833139058560,
+          "y" : 349823883396634368
+        },
+        "identifier" : "S22"
+      },
+      "S27" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 894040946140767104,
+          "y" : 136175669262027120
+        },
+        "identifier" : "S27"
+      },
+      "S28" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 264154706880777280,
+          "y" : 363232216763236096
+        },
+        "identifier" : "S28"
+      },
+      "S29" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 607639127369599744,
+          "y" : 900581864864803072
+        },
+        "identifier" : "S29"
+      },
+      "S3" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 505429524307313856,
+          "y" : 30128186226694972
+        },
+        "identifier" : "S3"
+      },
+      "S4" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 899070957365123328,
+          "y" : 527469857999573248
+        },
+        "identifier" : "S4"
+      },
+      "S5" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 548937471001613824,
+          "y" : 769765202118558592
+        },
+        "identifier" : "S5"
+      },
+      "S6" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 52091341094131696,
+          "y" : 33930536427347832
+        },
+        "identifier" : "S6"
+      },
+      "S7" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 388714329629190144,
+          "y" : 163701113019351808
+        },
+        "identifier" : "S7"
+      },
+      "S8" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 234334313978674016,
+          "y" : 665465579742811904
+        },
+        "identifier" : "S8"
+      },
+      "S9" : {
+        "mass" : null,
+        "coordinates" : {
+          "x" : 319431276750281088,
+          "y" : 147894687724397632
+        },
+        "identifier" : "S9"
+      }
+    }
   },
-  "starDate" : 61380889200000
+  "starDate" : 1422799843724
 }

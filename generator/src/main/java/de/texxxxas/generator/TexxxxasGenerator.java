@@ -2,11 +2,15 @@ package de.texxxxas.generator;
 
 import de.texxxxas.common.TexxxxasGame;
 import de.texxxxas.common.game.GameParameters;
+import de.texxxxas.common.math.Coordinates;
+import de.texxxxas.common.universe.Star;
 import de.texxxxas.common.universe.Universe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class TexxxxasGenerator {
     Logger log = LoggerFactory.getLogger(getClass());
@@ -20,11 +24,16 @@ public class TexxxxasGenerator {
 
         TexxxxasGame game = new TexxxxasGame();
 
-        game.setStarDate(new Date(2015,1,1));
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2015,1,1);
+
+        game.setStarDate(calendar.getTime());
 
         Universe universe = new Universe();
 
         universe.setSize(parameters.getUniverseSize());
+
+        generateStars(universe, parameters.getStarCount());
 
         game.setUniverse(universe);
 
@@ -33,5 +42,20 @@ public class TexxxxasGenerator {
         log.info("Done");
 
         return game;
+    }
+
+    private void generateStars(Universe universe, int starCount) {
+        List<Star> stars = new ArrayList<>();
+
+        for (int i = 1; i <= starCount; i ++) {
+            Star s = new Star(i);
+            s.setIdentifier("S" + i);
+            s.setCoordinates(new Coordinates(Math.random() * universe.getSize(), Math.random() * universe.getSize()));
+            stars.add(s);
+        }
+
+        for (Star s : stars) {
+            universe.getStars().put(s.getIdentifier(), s);
+        }
     }
 }
