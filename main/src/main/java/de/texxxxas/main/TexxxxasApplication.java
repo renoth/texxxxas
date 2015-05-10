@@ -1,6 +1,5 @@
 package de.texxxxas.main;
 
-import de.texxxxas.common.TexxxxasGame;
 import de.texxxxas.ui.TexxxxasUi;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +10,6 @@ public class TexxxxasApplication {
     public static void main(String[] args) {
         log.info("Starting Application ...");
 
-        new TexxxxasUi().start();
+        new TexxxxasUi();
     }
 }

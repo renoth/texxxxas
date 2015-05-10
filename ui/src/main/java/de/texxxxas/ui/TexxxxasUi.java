@@ -7,20 +7,27 @@ import de.texxxxas.generator.TexxxxasGenerator;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
 public class TexxxxasUi {
     private TexxxxasGame game;
-    private JFrame mainFrame;
+    private final JFrame mainFrame;
 
-    public void start() {
+    public TexxxxasUi() {
+        mainFrame = new JFrame("TeXXXXas");
+
         //Build main game window
 
-        mainFrame = new JFrame("TeXXXXas");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        buildMainMenu(mainFrame);
+        JMenuBar mainMenu = new JMenuBar();
+
+        buildMainMenu(mainMenu);
+        buildViewMenu(mainMenu);
+
+        mainFrame.setJMenuBar(mainMenu);
 
         mainFrame.setSize(1200, 800);
 
@@ -30,9 +37,7 @@ public class TexxxxasUi {
         //build map window
     }
 
-    private void buildMainMenu(JFrame mainFrame) {
-        JMenuBar mainMenu = new JMenuBar();
-
+    private void buildMainMenu(final JMenuBar mainMenu) {
         JMenu gameMenu;
         mainMenu.add(gameMenu = new JMenu("Game"));
 
@@ -49,20 +54,66 @@ public class TexxxxasUi {
         gameMenu.add(new JMenuItem(new AbstractAction("Save Game") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ObjectMapper mapper = new ObjectMapper();
+                saveGame();
+                repaintMainFrame();
+            }
+        }));
 
-                mapper.configure(SerializationFeature.INDENT_OUTPUT, true); //pretty output
-                try {
-                    mapper.writeValue(new File(System.getProperty("user.dir") + "\\game.json"), game);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+        gameMenu.addSeparator();
+
+        gameMenu.add(new AbstractAction("Quit") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveGame();
+                mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
+            }
+        });
+
+
+    }
+
+    private void buildViewMenu(final JMenuBar mainMenu) {
+        JMenu gameMenu;
+        mainMenu.add(gameMenu = new JMenu("View"));
+
+        gameMenu.add(new JMenuItem(new AbstractAction("New Game") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TexxxxasGenerator generator = new TexxxxasGenerator();
+                game = generator.generateGame();
 
                 repaintMainFrame();
             }
         }));
 
-        mainFrame.setJMenuBar(mainMenu);
+        gameMenu.add(new JMenuItem(new AbstractAction("Save Game") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveGame();
+                repaintMainFrame();
+            }
+        }));
+
+        gameMenu.addSeparator();
+
+        gameMenu.add(new AbstractAction("Quit") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveGame();
+                mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
+            }
+        });
+    }
+
+    private void saveGame() {
+        ObjectMapper mapper = new ObjectMapper();
+
+        mapper.configure(SerializationFeature.INDENT_OUTPUT, true); //pretty output
+        try {
+            mapper.writeValue(new File(System.getProperty("user.dir") + "\\game.json"), game);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void repaintMainFrame() {
