@@ -42,7 +42,9 @@ public class TexxxxasUi {
         mainFrame.setVisible(true);
 
         //build map window
-        
+
+
+
         //add javaFX pane
 
         final JFXPanel fxPanel = new JFXPanel();
@@ -66,9 +68,9 @@ public class TexxxxasUi {
     }
 
     private static Scene createScene() {
-        Group root  =  new  Group();
-        Scene  scene  =  new  Scene(root, Color.ALICEBLUE);
-        Text text  =  new  Text();
+        Group root = new Group();
+        Scene scene = new Scene(root, Color.ALICEBLUE);
+        Text text = new Text();
 
         text.setX(40);
         text.setY(100);

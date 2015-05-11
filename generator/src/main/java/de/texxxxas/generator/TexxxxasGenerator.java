@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -47,9 +48,19 @@ public class TexxxxasGenerator {
         List<Star> stars = new ArrayList<>();
 
         for (int i = 1; i <= starCount; i ++) {
-            Star s = new Star(i);
+            Star s = new Star();
             s.setIdentifier("S" + i);
             s.setCoordinates(new Coordinates(Math.random() * universe.getSize(), Math.random() * universe.getSize()));
+
+            BigDecimal mass = StarGenerator.generateMass();
+
+            Long temperature = StarGenerator.generateTemperature(mass);
+
+            s.setTemperature(temperature);
+
+            log.info(mass.toPlainString());
+
+            s.setMass(mass.toBigInteger());
             stars.add(s);
         }
 

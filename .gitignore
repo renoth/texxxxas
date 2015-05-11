@@ -1,1 +1,10 @@
 .idea/
+main/build/
+common/build/
+build/
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+main/game.json
+options.json

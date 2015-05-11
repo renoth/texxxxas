@@ -7,6 +7,8 @@ import java.math.BigInteger;
 public class CelestialBody implements Identifiable {
     private BigInteger mass;
     private Coordinates coordinates;
+    private Long temperature;
+    private Long radius;
 
     private String id;
 
@@ -33,5 +35,21 @@ public class CelestialBody implements Identifiable {
 
     public void setIdentifier(String id) {
         this.id = id;
+    }
+
+    public Long getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Long temperature) {
+        this.temperature = temperature;
+    }
+
+    public Long getRadius() {
+        return radius;
+    }
+
+    public void setRadius(Long radius) {
+        this.radius = radius;
     }
 }
