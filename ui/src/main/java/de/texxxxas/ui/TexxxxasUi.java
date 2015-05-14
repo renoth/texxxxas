@@ -42,14 +42,13 @@ public class TexxxxasUi {
 
         //TODO build map window
 
-
+        JTabbedPane tabbedPane = new JTabbedPane();
 
         //add javaFX pane
 
         mapPanel = new MapJFXPanel(this);
 
-        mapPanel.setPanel(new JFXPanel());
-        mainFrame.add(mapPanel.getPanel());
+        //mainFrame.add(mapPanel);
         mainFrame.setSize(MAP_SIZE_PX, MAP_SIZE_PX);
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,9 +56,14 @@ public class TexxxxasUi {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                initScene(mapPanel.getPanel());
+                initScene(mapPanel);
             }
         });
+
+        tabbedPane.addTab("Map", mapPanel);
+        tabbedPane.addTab("Empire", new JPanel());
+
+        mainFrame.add(tabbedPane);
     }
 
     private void initScene(JFXPanel fxPanel) {
@@ -150,9 +154,8 @@ public class TexxxxasUi {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                initScene(mapPanel.getPanel());
+                initScene(mapPanel);
                 mapPanel.drawContent();
-
             }
         });
 
