@@ -4,20 +4,38 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.texxxxas.common.TexxxxasGame;
 import de.texxxxas.common.game.GameParameters;
 import de.texxxxas.common.math.Coordinates;
+import de.texxxxas.common.universe.Planet;
 import de.texxxxas.common.universe.Star;
 import de.texxxxas.common.universe.Universe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class TexxxxasGenerator {
     static Logger log = LoggerFactory.getLogger(TexxxxasGenerator.class);
+    static Random random = new Random();
+
+    public TexxxxasGame generateGame() {
+        ObjectMapper mapper = new ObjectMapper();
+
+        GameParameters parameters = GameParameters.getCurrentGameParameters();
+
+/*        try {
+            parameters = mapper.readValue(new File(System.getProperty("user.dir") + "\\options.json"), GameParameters.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        return generateGame(parameters);
+    }
 
     public TexxxxasGame generateGame(GameParameters parameters) {
         log.info("Generating new game with parameters: " + parameters.toString());
@@ -33,7 +51,7 @@ public class TexxxxasGenerator {
 
         universe.setSize(parameters.getUniverseSize());
 
-        generateStars(universe, parameters.getStarCount());
+        generateStars(universe, parameters);
 
         game.setUniverse(universe);
 
@@ -44,10 +62,10 @@ public class TexxxxasGenerator {
         return game;
     }
 
-    private void generateStars(Universe universe, int starCount) {
+    private void generateStars(Universe universe, GameParameters parameters) {
         List<Star> stars = new ArrayList<>();
 
-        for (int i = 1; i <= starCount; i ++) {
+        for (int i = 1; i <= parameters.getStarCount(); i ++) {
             Star s = new Star();
             s.setIdentifier("S" + i);
             s.setCoordinates(new Coordinates(Math.random() * universe.getSize(), Math.random() * universe.getSize()));
@@ -57,10 +75,10 @@ public class TexxxxasGenerator {
             Long temperature = StarGenerator.generateTemperature(mass);
 
             s.setTemperature(temperature);
-
-            log.info(mass.toPlainString());
-
             s.setMass(mass.toBigInteger());
+
+            generatePlanets(s, parameters);
+
             stars.add(s);
         }
 
@@ -69,16 +87,20 @@ public class TexxxxasGenerator {
         }
     }
 
-    public TexxxxasGame generateGame() {
-        ObjectMapper mapper = new ObjectMapper();
+    private void generatePlanets(Star s, GameParameters parameters) {
+        long planetCount = parameters.getMinPlanetsPerStar() + Math.round(Math.random() * parameters.getMaxPlanetsPerStar());
 
-        GameParameters parameters = new GameParameters();
-        try {
-            parameters = mapper.readValue(new File(System.getProperty("user.dir") + "\\options.json"), GameParameters.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        s.setPlanets(IntStream.rangeClosed(1, (int) planetCount).boxed().map(new Function<Integer, Planet>() {
+            @Override
+            public Planet apply(Integer integer) {
+                Planet p = new Planet(s);
 
-        return generateGame(parameters);
+                //TODO special logic for gas giants
+
+                p.setMass(PlanetGenerator.generateMass(random.nextGaussian()));
+
+                return p;
+            }
+        }).collect(Collectors.toList()));
     }
 }

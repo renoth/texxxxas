@@ -1,9 +1,11 @@
 package de.texxxxas.common.universe;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import de.texxxxas.common.math.Coordinates;
 
 import java.math.BigInteger;
 
+@JsonPropertyOrder({"id"})
 public class CelestialBody implements Identifiable {
     private BigInteger mass;
     private Coordinates coordinates;

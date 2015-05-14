@@ -38,4 +38,12 @@ public class Coordinates {
     public void setY(Long y) {
         this.y = y;
     }
+
+    public double getLyX() {
+        return CoordinatesUtils.kmToLy(x);
+    }
+
+    public double getLyY() {
+        return CoordinatesUtils.kmToLy(y);
+    }
 }

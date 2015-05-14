@@ -25,7 +25,7 @@ subprojects {
 
 project(':common') {
     dependencies {
-
+       compile 'com.fasterxml.jackson.core:jackson-annotations:2.5.3'
     }
 }
 

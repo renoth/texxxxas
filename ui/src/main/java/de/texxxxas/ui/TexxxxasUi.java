@@ -6,11 +6,7 @@ import de.texxxxas.common.TexxxxasGame;
 import de.texxxxas.generator.TexxxxasGenerator;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +15,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class TexxxxasUi {
+    public static final int MAP_SIZE_PX = 1000;
+
+    private final MapJFXPanel mapPanel;
     private TexxxxasGame game;
     private final JFrame mainFrame;
 
@@ -31,7 +30,7 @@ public class TexxxxasUi {
 
         JMenuBar mainMenu = new JMenuBar();
 
-        buildMainMenu(mainMenu);
+        buildGameMenu(mainMenu);
         buildViewMenu(mainMenu);
 
         mainFrame.setJMenuBar(mainMenu);
@@ -41,48 +40,34 @@ public class TexxxxasUi {
         mainFrame.pack();
         mainFrame.setVisible(true);
 
-        //build map window
+        //TODO build map window
 
 
 
         //add javaFX pane
 
-        final JFXPanel fxPanel = new JFXPanel();
-        mainFrame.add(fxPanel);
-        mainFrame.setSize(300, 200);
+        mapPanel = new MapJFXPanel(this);
+
+        mapPanel.setPanel(new JFXPanel());
+        mainFrame.add(mapPanel.getPanel());
+        mainFrame.setSize(MAP_SIZE_PX, MAP_SIZE_PX);
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                initFX(fxPanel);
+                initScene(mapPanel.getPanel());
             }
         });
     }
 
-    private static void initFX(JFXPanel fxPanel) {
-        // This method is invoked on the JavaFX thread
-        Scene scene = createScene();
+    private void initScene(JFXPanel fxPanel) {
+        Scene scene = mapPanel.createScene();
         fxPanel.setScene(scene);
     }
 
-    private static Scene createScene() {
-        Group root = new Group();
-        Scene scene = new Scene(root, Color.ALICEBLUE);
-        Text text = new Text();
-
-        text.setX(40);
-        text.setY(100);
-        text.setFont(new Font(25));
-        text.setText("Welcome JavaFX!");
-
-        root.getChildren().add(text);
-
-        return (scene);
-    }
-
-    private void buildMainMenu(final JMenuBar mainMenu) {
+    private void buildGameMenu(final JMenuBar mainMenu) {
         JMenu gameMenu;
         mainMenu.add(gameMenu = new JMenu("Game"));
 
@@ -161,5 +146,19 @@ public class TexxxxasUi {
 
     private void repaintMainFrame() {
         mainFrame.repaint();
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                initScene(mapPanel.getPanel());
+                mapPanel.drawContent();
+
+            }
+        });
+
+    }
+
+    public TexxxxasGame getGame() {
+        return game;
     }
 }
