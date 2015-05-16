@@ -3,7 +3,9 @@ package de.texxxxas.ui;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import de.texxxxas.common.TexxxxasGame;
+import de.texxxxas.common.universe.Universe;
 import de.texxxxas.generator.TexxxxasGenerator;
+import de.texxxxas.ui.panel.EmpirePanel;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
@@ -17,11 +19,17 @@ import java.io.IOException;
 public class TexxxxasUi {
     public static final int MAP_SIZE_PX = 1000;
 
-    private final MapJFXPanel mapPanel;
+    private final MapPanelJFX mapPanel;
+    private final EmpirePanel empirePanel;
+
     private TexxxxasGame game;
+
     private final JFrame mainFrame;
 
     public TexxxxasUi() {
+        game = new TexxxxasGame();
+        game.setUniverse(new Universe());
+
         mainFrame = new JFrame("TeXXXXas");
 
         //Build main game window
@@ -46,7 +54,7 @@ public class TexxxxasUi {
 
         //add javaFX pane
 
-        mapPanel = new MapJFXPanel(this);
+        mapPanel = new MapPanelJFX(this);
 
         //mainFrame.add(mapPanel);
         mainFrame.setSize(MAP_SIZE_PX, MAP_SIZE_PX);
@@ -61,7 +69,7 @@ public class TexxxxasUi {
         });
 
         tabbedPane.addTab("Map", mapPanel);
-        tabbedPane.addTab("Empire", new JPanel());
+        tabbedPane.addTab("Empire", empirePanel = new EmpirePanel(this));
 
         mainFrame.add(tabbedPane);
     }

@@ -98,6 +98,7 @@ public class TexxxxasGenerator {
                 //TODO special logic for gas giants
 
                 p.setMass(PlanetGenerator.generateMass(random.nextGaussian()));
+                p.setIdentifier(s.getIdentifier() + "P" + integer);
 
                 return p;
             }
