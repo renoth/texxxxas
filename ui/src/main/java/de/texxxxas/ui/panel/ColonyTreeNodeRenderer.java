@@ -11,16 +11,13 @@ import java.awt.*;
 public class ColonyTreeNodeRenderer implements TreeCellRenderer {
     DefaultTreeCellRenderer defaultRenderer = new DefaultTreeCellRenderer();
 
-
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 
         if (value instanceof DefaultMutableTreeNode && ((DefaultMutableTreeNode) value).getUserObject() instanceof CelestialBody) {
-            System.out.println(value);
             CelestialBody cb = (CelestialBody) ((DefaultMutableTreeNode) value).getUserObject();
             JPanel panel = new JPanel();
             panel.add(new JLabel(cb.getIdentifier()));
-            //panel.add(new JLabel("TEST"));
             return panel;
         } else {
             return defaultRenderer.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);

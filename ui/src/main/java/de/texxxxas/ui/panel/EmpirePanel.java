@@ -1,5 +1,7 @@
 package de.texxxxas.ui.panel;
 
+import de.texxxxas.common.faction.Colony;
+import de.texxxxas.common.universe.Colonizable;
 import de.texxxxas.common.universe.Planet;
 import de.texxxxas.common.universe.Star;
 import de.texxxxas.ui.TexxxxasUi;
@@ -16,6 +18,8 @@ public class EmpirePanel extends JPanel {
 
     private final TexxxxasUi texxxxasUi;
     private JTree tree;
+    private Colony selectedColony;
+    private ColonyTabsPanel colonyPanel;
 
     public EmpirePanel(TexxxxasUi texxxxasUi) {
         this.texxxxasUi = texxxxasUi;
@@ -23,6 +27,14 @@ public class EmpirePanel extends JPanel {
         setLayout(new BorderLayout());
 
         createUniverseTreeView();
+
+        createColonyActionPanel();
+    }
+
+    private void createColonyActionPanel() {
+        colonyPanel = new ColonyTabsPanel(selectedColony);
+
+        add(colonyPanel, BorderLayout.CENTER);
     }
 
     private void createUniverseTreeView() {
@@ -35,9 +47,12 @@ public class EmpirePanel extends JPanel {
             @Override
             public void valueChanged(TreeSelectionEvent e) {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+
                 if (node == null) return;
 
-                System.out.println(node.getUserObject());
+                if (node.getUserObject() instanceof Colonizable) {
+                    colonyPanel.repaint(((Colonizable) node.getUserObject()).getColony());
+                }
             }
         };
 

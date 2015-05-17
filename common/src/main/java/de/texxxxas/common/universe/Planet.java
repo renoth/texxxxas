@@ -1,23 +1,18 @@
 package de.texxxxas.common.universe;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import de.texxxxas.common.faction.Faction;
+import de.texxxxas.common.faction.Colony;
 
 public class Planet extends CelestialBody implements Colonizable {
     @JsonBackReference
     private Star star;
     //@JsonBackReference (no factions yet)
-    private Faction owner;
+    private Colony colony;
 
     private Long orbitalDistance;
 
     public Planet(Star star) {
         this.star = star;
-    }
-
-    @Override
-    public Faction getOwner() {
-        return owner;
     }
 
     public Star getStar() {
@@ -28,15 +23,20 @@ public class Planet extends CelestialBody implements Colonizable {
         this.star = star;
     }
 
-    public void setOwner(Faction owner) {
-        this.owner = owner;
-    }
-
     public Long getOrbitalDistance() {
         return orbitalDistance;
     }
 
     public void setOrbitalDistance(Long orbitalDistance) {
         this.orbitalDistance = orbitalDistance;
+    }
+
+    @Override
+    public Colony getColony() {
+        return colony;
+    }
+
+    public void setColony(Colony colony) {
+        this.colony = colony;
     }
 }

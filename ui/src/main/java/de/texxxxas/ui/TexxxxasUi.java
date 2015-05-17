@@ -43,7 +43,7 @@ public class TexxxxasUi {
 
         mainFrame.setJMenuBar(mainMenu);
 
-        mainFrame.setSize(1200, 800);
+
 
         mainFrame.pack();
         mainFrame.setVisible(true);
@@ -55,9 +55,9 @@ public class TexxxxasUi {
         //add javaFX pane
 
         mapPanel = new MapPanelJFX(this);
+        //mapPanel.setSize(MAP_SIZE_PX, MAP_SIZE_PX);
 
         //mainFrame.add(mapPanel);
-        mainFrame.setSize(MAP_SIZE_PX, MAP_SIZE_PX);
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -71,6 +71,7 @@ public class TexxxxasUi {
         tabbedPane.addTab("Map", mapPanel);
         tabbedPane.addTab("Empire", empirePanel = new EmpirePanel(this));
 
+        mainFrame.setSize(1400, 1000);
         mainFrame.add(tabbedPane);
     }
 

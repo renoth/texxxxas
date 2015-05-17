@@ -1,10 +1,11 @@
 package de.texxxxas.common.universe;
 
-import de.texxxxas.common.faction.Faction;
+import de.texxxxas.common.faction.Colony;
 
 public interface Colonizable {
 
     //TODO maybe allow multipolar ownership later
 
-    public Faction getOwner();
+    public Colony getColony();
+
 }
