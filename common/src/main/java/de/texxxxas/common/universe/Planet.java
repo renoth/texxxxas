@@ -6,7 +6,8 @@ import de.texxxxas.common.faction.Colony;
 public class Planet extends CelestialBody implements Colonizable {
     @JsonBackReference
     private Star star;
-    //@JsonBackReference (no factions yet)
+
+    @JsonBackReference
     private Colony colony;
 
     private Long orbitalDistance;

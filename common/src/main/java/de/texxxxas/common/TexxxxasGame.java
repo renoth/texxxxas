@@ -7,8 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 public class TexxxxasGame {
-    private List<Faction> factions;
+    private List<Faction> aiPlayers;
+    private Faction player;
+
     private Universe universe;
+
     private Date starDate;
 
     public Date getStarDate() {
@@ -27,11 +30,19 @@ public class TexxxxasGame {
         this.universe = universe;
     }
 
-    public List<Faction> getFactions() {
-        return factions;
+    public List<Faction> getAiPlayers() {
+        return aiPlayers;
     }
 
-    public void setFactions(List<Faction> factions) {
-        this.factions = factions;
+    public void setAiPlayers(List<Faction> aiPlayers) {
+        this.aiPlayers = aiPlayers;
+    }
+
+    public Faction getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Faction player) {
+        this.player = player;
     }
 }

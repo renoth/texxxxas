@@ -116,18 +116,18 @@ public class GameParameters {
         if (currentParameters == null) {
             currentParameters = new GameParameters();
 
-            currentParameters.starCount = 40;
+            currentParameters.starCount = 10;
             currentParameters.universeSize = 100;
 
-            currentParameters.minPlanetsPerStar = 0;
-            currentParameters.maxPlanetsPerStar = 10;
+            currentParameters.minPlanetsPerStar = 1;
+            currentParameters.maxPlanetsPerStar = 5;
             currentParameters.minPlanetMass = 0.1;
             currentParameters.maxPlanetMass = 100;
             currentParameters.minPlanetDensity = 1000;
             currentParameters.maxPlanetDensity = 7000;
 
-            currentParameters.minMoonsPerPlanet = 0;
-            currentParameters.maxMoonsPerPlanet = 8;
+            currentParameters.minMoonsPerPlanet = 1;
+            currentParameters.maxMoonsPerPlanet = 3;
             currentParameters.moonPercentage = 50;
             currentParameters.minMoonPlanetMass = 0.001;
             currentParameters.maxMoonPlanetMass = 0.7;

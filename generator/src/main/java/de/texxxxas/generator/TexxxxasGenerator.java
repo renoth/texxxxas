@@ -2,6 +2,8 @@ package de.texxxxas.generator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.texxxxas.common.TexxxxasGame;
+import de.texxxxas.common.faction.Colony;
+import de.texxxxas.common.faction.Faction;
 import de.texxxxas.common.game.GameParameters;
 import de.texxxxas.common.math.Coordinates;
 import de.texxxxas.common.universe.Planet;
@@ -58,6 +60,37 @@ public class TexxxxasGenerator {
         //TODO set game objects dependent on parameters
 
         log.info("Done");
+
+        Faction player = new Faction();
+
+        player.setName("Player");
+        player.setKnowledge(KnowledgeGenerator.startKnowledge());
+
+        Planet homeworld = universe.getStars().get("S2").getPlanets().get(0);
+
+        homeworld.setColony(new Colony(player, homeworld));
+
+        player.setColonies(new ArrayList<>());
+
+        player.getColonies().add(homeworld.getColony());
+
+        player.setHomeworld(homeworld);
+
+        //TODO create initial colony
+
+        game.setPlayer(player);
+
+        game.setAiPlayers(new ArrayList<>());
+
+        Faction ai = new Faction();
+
+        ai.setName("Ai");
+        ai.setKnowledge(KnowledgeGenerator.startKnowledge());
+
+
+
+
+        game.getAiPlayers().add(ai);
 
         return game;
     }

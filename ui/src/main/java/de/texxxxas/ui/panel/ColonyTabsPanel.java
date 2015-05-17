@@ -1,6 +1,7 @@
 package de.texxxxas.ui.panel;
 
 import de.texxxxas.common.faction.Colony;
+import de.texxxxas.ui.panel.colony.ColonyConstructionTab;
 import de.texxxxas.ui.panel.colony.ColonyDetailsTab;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class ColonyTabsPanel extends JPanel {
         tabbedPane.setPreferredSize(new Dimension(1000, 1000));
 
         tabbedPane.addTab("Summary", new ColonyDetailsTab(selectedColony));
+        tabbedPane.addTab("Construction", new ColonyConstructionTab(selectedColony));
 
         add(tabbedPane);
     }
