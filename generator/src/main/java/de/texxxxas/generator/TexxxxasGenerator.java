@@ -66,9 +66,12 @@ public class TexxxxasGenerator {
         player.setName("Player");
         player.setKnowledge(KnowledgeGenerator.startKnowledge());
 
-        Planet homeworld = universe.getStars().get("S2").getPlanets().get(0);
+        Planet homeworld = universe.getStars().get("S1").getPlanets().get(0);
 
-        homeworld.setColony(new Colony(player, homeworld));
+        Colony colony;
+        homeworld.setColony(colony = new Colony(player, homeworld));
+        colony.setPopulation(1000000);
+        colony.setConstructionFactory(1);
 
         player.setColonies(new ArrayList<>());
 
@@ -86,9 +89,6 @@ public class TexxxxasGenerator {
 
         ai.setName("Ai");
         ai.setKnowledge(KnowledgeGenerator.startKnowledge());
-
-
-
 
         game.getAiPlayers().add(ai);
 

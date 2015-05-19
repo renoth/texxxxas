@@ -1,13 +1,13 @@
 package de.texxxxas.common.universe;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class Universe {
     private int size;
-    private HashMap<String, Star> stars;
+    private LinkedHashMap<String, Star> stars;
 
     public Universe() {
-        stars = new HashMap<>();
+        stars = new LinkedHashMap<>();
     }
 
     public int getSize() {
@@ -18,11 +18,11 @@ public class Universe {
         this.size = size;
     }
 
-    public HashMap<String, Star> getStars() {
+    public LinkedHashMap<String, Star> getStars() {
         return stars;
     }
 
-    public void setStars(HashMap<String, Star> stars) {
+    public void setStars(LinkedHashMap<String, Star> stars) {
         this.stars = stars;
     }
 }

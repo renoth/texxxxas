@@ -84,7 +84,8 @@ public class TexxxxasUi {
         JMenu gameMenu;
         mainMenu.add(gameMenu = new JMenu("Game"));
 
-        gameMenu.add(new JMenuItem(new AbstractAction("New Game") {
+        JMenuItem newGameItem;
+        gameMenu.add(newGameItem = new JMenuItem(new AbstractAction("New Game") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TexxxxasGenerator generator = new TexxxxasGenerator();
@@ -93,14 +94,17 @@ public class TexxxxasUi {
                 repaintMainFrame();
             }
         }));
+        newGameItem.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.Event.CTRL_MASK));
 
-        gameMenu.add(new JMenuItem(new AbstractAction("Save Game") {
+        JMenuItem saveGameItem;
+        gameMenu.add(saveGameItem = new JMenuItem(new AbstractAction("Save Game") {
             @Override
             public void actionPerformed(ActionEvent e) {
                 saveGame();
                 repaintMainFrame();
             }
         }));
+        saveGameItem.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.Event.CTRL_MASK));
 
         gameMenu.addSeparator();
 

@@ -12,6 +12,9 @@ public class Colony {
     @JsonIgnore
     private Faction owner;
 
+    private long population;
+    private double constructionFactory;
+
     public Colony(Faction player, Planet location) {
         this.owner = player;
         this.location = location;
@@ -31,5 +34,21 @@ public class Colony {
 
     public void setOwner(Faction owner) {
         this.owner = owner;
+    }
+
+    public long getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(long population) {
+        this.population = population;
+    }
+
+    public double getConstructionFactory() {
+        return constructionFactory;
+    }
+
+    public void setConstructionFactory(double constructionFactory) {
+        this.constructionFactory = constructionFactory;
     }
 }

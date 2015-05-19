@@ -9,7 +9,8 @@ import java.awt.*;
 import java.util.Date;
 
 public class ColonyTabsPanel extends JPanel {
-    private final JLabel label;
+    private final ColonyDetailsTab detailsTab;
+
     private Colony selectedColony;
 
     public ColonyTabsPanel(Colony colony) {
@@ -17,23 +18,24 @@ public class ColonyTabsPanel extends JPanel {
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        add(label = new JLabel(colony != null ? colony.toString() : "nullcolony " + Math.random()));
+        tabbedPane.setPreferredSize(new Dimension(500, 500));
 
-        tabbedPane.setPreferredSize(new Dimension(1000, 1000));
-
-        tabbedPane.addTab("Summary", new ColonyDetailsTab(selectedColony));
+        tabbedPane.addTab("Summary", detailsTab = new ColonyDetailsTab(selectedColony));
         tabbedPane.addTab("Construction", new ColonyConstructionTab(selectedColony));
 
-        add(tabbedPane);
+        add(tabbedPane, BorderLayout.CENTER);
     }
 
     public void repaint(Colony selectedColony) {
         super.repaint();
-        setSelectedColony(selectedColony);
+        if (selectedColony != null) {
+            setSelectedColony(selectedColony);
+
+            detailsTab.repaint(selectedColony);
+        }
     }
 
     private void setSelectedColony(Colony selectedColony) {
         this.selectedColony = selectedColony;
-        label.setText(new Date().toString());
     }
 }
